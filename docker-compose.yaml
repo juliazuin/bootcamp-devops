@@ -1,0 +1,14 @@
+version: '3'
+services:
+  scm:
+    image: "juliazuin/bootcamp-backend-scm:latest"
+    ports:
+      - "3030:3030"
+  user:
+    image: "juliazuin/bootcamp-backend-user:latest"
+    ports:
+      - "3020:3020"
+  frontend:
+    image: "juliazuin/bootcamp-frontend:latest"
+    ports:
+      - "80:80"
