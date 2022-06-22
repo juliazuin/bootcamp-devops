@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-user-deployment
+  labels:
+    app: backend-user
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-user
+  template:
+    metadata:
+      labels:
+        app: backend-user
+    spec:
+      containers:
+      - name: backend-user
+        image: juliazuin/bootcamp-backend-user:latest
+        ports:
+        - containerPort: 3020
+        env:
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              name: questcode
+              key: NODE_ENV
+        - name: MONGO_URI
+          value: "mongodb+srv://adminuser:admin@bootcamp-devops.zqb13.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+        - name: SECRET_OR_KEY
+          value: "b00tc4mp"
